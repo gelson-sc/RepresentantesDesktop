@@ -53,6 +53,12 @@ public class ImprimirDados {
         // print codigo de barras
         return true;
     }
+    
+    public boolean imprimirString(String dados) {
+        
+        // print codigo de barras
+        return true;
+    }
 
     public String imprimirPedidoTela(List<Produto> produtos) {
         String tela = "<html>";
