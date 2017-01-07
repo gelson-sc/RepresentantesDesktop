@@ -107,12 +107,8 @@ public class LoginWSJDialog extends javax.swing.JDialog {
     private void jButtonLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogarActionPerformed
         String login = jTextLogin.getText().trim();
         String senha = jTextSenha.getText().trim();
-        mac = "00:F5:87:A3:45:D3";
-        int tipoLogin = WsLogin.authenticate(login, senha, mac);
-                if (tipoLogin == 0) {
-                    System.exit(0);
-                }
-                else if (tipoLogin == 1 || tipoLogin == 2 ) {
+        int tipoLogin = WsLogin.authenticate(login, senha);
+                if (tipoLogin == 1 || tipoLogin == 2 ) {
                     this.dispose();
                      new PedidoJFrame(tipoLogin).setVisible(true);
                     
@@ -124,8 +120,6 @@ public class LoginWSJDialog extends javax.swing.JDialog {
                     // reset username and password
                     jTextLogin.setText("");
                     jTextSenha.setText("");
-                    
-
                 }
     }//GEN-LAST:event_jButtonLogarActionPerformed
 
