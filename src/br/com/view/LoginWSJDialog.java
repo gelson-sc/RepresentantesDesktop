@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class LoginWSJDialog extends javax.swing.JDialog {
 
     private String mac;
-    
+
     public LoginWSJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -108,21 +108,34 @@ public class LoginWSJDialog extends javax.swing.JDialog {
         String login = jTextLogin.getText().trim();
         String senha = jTextSenha.getText().trim();
         int tipoLogin = WsLogin.authenticate(login, senha);
-                if (tipoLogin == 1 || tipoLogin == 2 ) {
-                    this.dispose();
-                     new PedidoJFrame(tipoLogin).setVisible(true);
-                    
-                }else {
-                    JOptionPane.showMessageDialog(LoginWSJDialog.this,
-                            "Falha no login",
-                            "Login",
-                            JOptionPane.ERROR_MESSAGE);
-                    // reset username and password
-                    jTextLogin.setText("");
-                    jTextSenha.setText("");
-                }
+        if (tipoLogin == 0) {
+            mensagem("Terminal Bloqueado");
+            this.dispose();
+
+        } else if (tipoLogin == 1 || tipoLogin == 2) {
+            this.dispose();
+            new PedidoJFrame(tipoLogin).setVisible(true);
+
+        } else if (tipoLogin == 3) {
+            this.dispose();
+            //adm
+
+        }  else {
+            mensagem("Falha no login");
+            // reset username and password
+            jTextLogin.setText("");
+            jTextSenha.setText("");
+        }
     }//GEN-LAST:event_jButtonLogarActionPerformed
 
+    public void mensagem(String msg){
+        JOptionPane.showMessageDialog(LoginWSJDialog.this,
+                    "Falha no login",
+                    "Login",
+                    JOptionPane.ERROR_MESSAGE);
+    }
+    
+    
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
